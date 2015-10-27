@@ -1,0 +1,3 @@
+eigenfaces_error:    1.5661e+003
+reconstruct_error: 116.2597
+eigenface_landmark_error: 922.45
