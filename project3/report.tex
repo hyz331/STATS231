@@ -1,0 +1,61 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+ 
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{intro}[2][I Introduction]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2}]}{\end{trivlist}}
+
+\newenvironment{p1}[2][II Dataset]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2}]}{\end{trivlist}}
+
+\newenvironment{p2}[2][III Feature Designs]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2}]}{\end{trivlist}}
+
+\newenvironment{p3}[2][IV Realboost for Face Detection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2}]}{\end{trivlist}}
+
+\usepackage{graphicx}
+\graphicspath{{./}}
+
+\begin{document}
+ 
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+ 
+\title{Project III Face Social Attributes and Political Elections Analysis by SVM}
+\author{Yunzhong He\\ %replace with your name
+204010749} %if necessary, replace with your course title
+ 
+\maketitle
+
+\begin{intro}{}
+\item{}
+For this project we studied the effects of face social attributes on political elections. In the first part we trained our classifier to score social attributes such as "old", "rich", "masculine" etc. on novel faces, using ground truth information obtained from Amazon Turk workers[1]. In the second part we scored these social attributes on pairs of politicians who ran a electron against each other, and tried to predict the outcomes.
+\end{intro}
+
+\begin{p1}{}
+\item{}
+We used 491 500X500 jpg images that have scores for the 14 social attributes \{Old, Masculine, Baby-faced, Competent, Attractive, Energetic, Well-groomed, Intelligent, Honest, Generous, Trustworthy, Confident, Rich, Dominant\}, as training set to predict the scores of unseen photos. And we used 112 500X500 images of governor election candidates, 115 senator election candidates and their election outcomes as training set to predict election outcomes.
+\end{p1}
+
+\begin{p2}{}
+
+\item{}
+\end{p2}
+
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+ 
+\end{document}
