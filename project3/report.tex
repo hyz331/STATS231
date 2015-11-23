@@ -20,7 +20,7 @@
 \newenvironment{p2}[2][III Feature Designs]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2}]}{\end{trivlist}}
 
-\newenvironment{p3}[2][IV Realboost for Face Detection]{\begin{trivlist}
+\newenvironment{p3}[2][IV Scoring Face Social Attributes with SVR]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2}]}{\end{trivlist}}
 
 \usepackage{graphicx}
@@ -40,19 +40,26 @@
 
 \begin{intro}{}
 \item{}
-For this project we studied the effects of face social attributes on political elections. In the first part we trained our classifier to score social attributes such as "old", "rich", "masculine" etc. on novel faces, using ground truth information obtained from Amazon Turk workers[1]. In the second part we scored these social attributes on pairs of politicians who ran a electron against each other, and tried to predict the outcomes.
+For this project we studied the effects of face social attributes on political elections. In the first part we trained our classifier to face score social attributes such as "old", "rich", "masculine" etc. on novel faces, using ground truth information obtained from Amazon Turk workers[1]. In the second part we scored these social attributes on pairs of politicians who ran a electron against each other, and tried to predict the outcomes.
 \end{intro}
 
 \begin{p1}{}
 \item{}
-We used 491 500X500 jpg images that have scores for the 14 social attributes \{Old, Masculine, Baby-faced, Competent, Attractive, Energetic, Well-groomed, Intelligent, Honest, Generous, Trustworthy, Confident, Rich, Dominant\}, as training set to predict the scores of unseen photos. And we used 112 500X500 images of governor election candidates, 115 senator election candidates and their election outcomes as training set to predict election outcomes.
+We used 491 500x500 jpg images that have scores for the 14 social attributes \{Old, Masculine, Baby-faced, Competent, Attractive, Energetic, Well-groomed, Intelligent, Honest, Generous, Trustworthy, Confident, Rich, Dominant\}, as training set to predict the scores of unseen photos. And we used 112 500x500 images of governor election candidates, 115 senator election candidates and their election outcomes as training set to predict election outcomes.
 \end{p1}
 
 \begin{p2}{}
-
 \item{}
+To be able to score social attributes on faces, we represent each image with a 1x119072 Histograms of Gradients (HoG) feature that indicates the images gradients at different regions. We also used a 160x1 vector to represent the positions of landmarks on a face. Below is a sample overlay of HoG and landmark features on a governor's face.
+\\
+The features are normalized into one long vectors. But since it is reasonable to believe that one entry in facial landmark is more informative than one entry in the HoG feature, we also optimized the weight of facial landmarks against HoG features for a best cross-validation accuracy.
 \end{p2}
 
+\begin{p3}{}
+To obtain scores of the 14 face social attributes we selected, we trained a SVR using the ground truth dataset for each face social attributes. And we obtained the following cross-validation accuracy for each feature.
+
+\item{}
+\end{p3}
 
 % --------------------------------------------------------------
 %     You don't have to mess with anything below this line.
