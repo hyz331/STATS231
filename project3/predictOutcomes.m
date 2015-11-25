@@ -17,7 +17,7 @@ function predictOutcomes()
 	losts = -diffs(num_diffs/2+1 : num_diffs, :);
 	labels = [ones(size(wins, 1), 1); zeros(size(losts, 1), 1)];
 	
-	svmtrain(labels, [wins; losts], '-v 5');
+	svmtrain(labels, [wins; losts], '-v 5 -c 150');
 
 	% Senator 
 	diffs = zeros(num_sen/2, num_trait);
@@ -30,7 +30,7 @@ function predictOutcomes()
 	losts = -diffs(num_diffs/2+1 : num_diffs, :);
 	labels = [ones(size(wins, 1), 1); zeros(size(losts, 1), 1)];
 	
-	svmtrain(labels, [wins; losts], '-v 5');
+	svmtrain(labels, [wins; losts], '-v 5 -c 100');
 
 	% Find corrlations
 	for i = 1:num_trait

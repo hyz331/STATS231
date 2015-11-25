@@ -13,7 +13,7 @@ function processData()
 	for i = 1:num_faces
 		HoG(i, :) = reshape(HoGfeatures(double(faces{i})), [1 61*61*32]);
 	end
-	face_landmar = (face_landmark) - 50 / 400;
+	face_landmark = (face_landmark - 50) / 400;
 	Features = [HoG face_landmark];
 	Labels = trait_annotation;
 
@@ -30,7 +30,7 @@ function processData()
 	for i = 1:num_faces
 		HoG(i, :) = reshape(HoGfeatures(double(faces{i})), [1 61*61*32]);
 	end
-	face_landmar = (face_landmark) - 50 / 400;
+	face_landmark = (face_landmark - 50) / 400;
 	Features_governor = [HoG face_landmark];
 
 	% load senator 
@@ -46,7 +46,7 @@ function processData()
 	for i = 1:num_faces
 		HoG(i, :) = reshape(HoGfeatures(double(faces{i})), [1 61*61*32]);
 	end
-	face_landmar = (face_landmark) - 50 / 400;
+	face_landmark = (face_landmark - 50) / 400;
 	Features_senator = [HoG face_landmark];
 
 	save '-binary' 'data.mat' 'Features' 'Labels' 'Features_governor' 'Features_senator';
