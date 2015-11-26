@@ -56,8 +56,51 @@ The features are normalized into one long vectors. But since it is reasonable to
 \end{p2}
 
 \begin{p3}{}
-To obtain scores of the 14 face social attributes we selected, we trained a SVR using the ground truth dataset for each face social attributes. And we obtained the following cross-validation accuracy for each feature.
-
+\item{}
+To obtain scores of the 14 face social attributes we selected, we trained a SVR using the ground truth dataset for each face social attributes. And we obtained the following five fold cross-validation accuracy for each feature.\\
+\begin{center}
+	\begin{tabular}{||c c||} 
+		\hline
+	    Attribute  & Mean squared error \\
+		\hline
+		Old & 0.140923\\
+		\hline
+		Masculine & 0.093477\\
+		\hline
+		Baby-faced & 0.100584\\
+		\hline
+		Competent & 0.063177\\
+		\hline
+		Attractive & 0.100130\\
+		\hline
+		Energetic & 0.073559\\
+		\hline
+		Well-groomed & 0.069999\\
+		\hline
+		Intelligent & 0.051910\\
+		\hline
+		Honest & 0.052500\\
+		\hline
+		Generous & 0.050157\\
+		\hline
+		Trustworthy & 0.054232\\
+		\hline
+		Confident & 0.070558\\
+		\hline
+		Rich & 0.061880\\
+		\hline
+		Dominant & 0.070661\\
+		\hline
+	\end{tabular}
+	{\\figure 2 regression errors}
+\end{center}
+And below is the regression reusult from one of the governor.\\
+\begin{center}
+		\includegraphics[height=7cm]{gov26_attributes.png}
+		\includegraphics[height=7cm]{img-elec/governor/G0026.jpg}
+		figure 3 face social attribute regression	
+\end{center}
+From figure 3 above we can tell that the governor candidate is old due to his grey hair, and his glasses may give people an impression of ingelligent. And it confirms with our regression results, in which old and intelligent had the largest values.
 \item{}
 \end{p3}
 
