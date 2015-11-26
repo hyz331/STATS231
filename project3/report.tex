@@ -23,6 +23,9 @@
 \newenvironment{p3}[2][IV Scoring Face Social Attributes with SVR]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2}]}{\end{trivlist}}
 
+\newenvironment{p4}[2][V Predicting Election Outcomes with Face Social Attributes]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2}]}{\end{trivlist}}
+
 \usepackage{graphicx}
 \graphicspath{{./}}
 
@@ -61,7 +64,7 @@ To obtain scores of the 14 face social attributes we selected, we trained a SVR 
 \begin{center}
 	\begin{tabular}{||c c||} 
 		\hline
-	    Attribute  & Mean squared error \\
+	    Attributes  & Correlations\\
 		\hline
 		Old & 0.140923\\
 		\hline
@@ -103,6 +106,64 @@ And below is the regression reusult from one of the governor.\\
 From figure 3 above we can tell that the governor candidate is old due to his grey hair, and his glasses may give people an impression of ingelligent. And it confirms with our regression results, in which old and intelligent had the largest values.
 \item{}
 \end{p3}
+
+\begin{p4}{}
+\item{V.1 Generate Training Data From Pairwise Election Results\\}
+To generate positive and negative examples from pairwise election results, we splitted our datasets in half. And for the first half, we computed $f_{ab} = f_a - f_b$, where $f_a$ won over $f_b$, and we labeled them as positives. For the second half, we computed $f_{ba} = f_b - f_a$, where $f_a$ won over $f_b$, we labeled them as negative examples. So for governors we have 112/2 = 66 training examples, we for senators we have 116/2 = 68 examples.\\
+\item{V.2 Predication Outcomes\\}
+We trained a simple linear SVM based on the examples we computed from V.1, and performed 5-fold cross-validation. Below are the prediction accuracy we obtained.
+\begin{center}
+	\begin{tabular}{||c c||} 
+		\hline
+	    Campaign & Accuracy \\
+		\hline
+		Governor & 0.707\\
+		Senator & 0.643\\
+		\hline
+	\end{tabular}
+	{\\figure 4 predication accuracy}
+\end{center}
+From the figure 4 above we can see that the prediction outcomes are indeed better than random guesses, indicating that the election results is largely related to a candidate's look. And it also indicates that a the effect of facial apperance is more significant in a governor's campaign, this may or may not due to the fact that voters are generally more familiar with the candidates in senator campaigns than governor campaigns.\\
+\item{}{V.3 Correlations\\}
+We also computed the correlation of each face social attributes between the election outcomes, and below are the results.
+\begin{center}
+	\begin{tabular}{||c c||} 
+		\hline
+	    Attribute  & Mean squared error \\
+		\hline
+		Old & -0.162\\
+		\hline
+		Masculine & 0.167\\
+		\hline
+		Baby-faced & -0.06\\
+		\hline
+		Competent & -0.108\\
+		\hline
+		Attractive & 0.058\\
+		\hline
+		Energetic & 0.230\\
+		\hline
+		Well-groomed & 0.026\\
+		\hline
+		Intelligent & -0.008\\
+		\hline
+		Honest & -0.181\\
+		\hline
+		Generous & -0.166\\
+		\hline
+		Trustworthy & -0.119\\
+		\hline
+		Confident & 0.238\\
+		\hline
+		Rich & -0.006\\
+		\hline
+		Dominant & 0.262\\
+		\hline
+	\end{tabular}
+	{\\figure 5 correlations}
+\end{center}
+Interestingly, we found that traits like 'dominant', 'confident', 'energetic' and even 'masculine' has the highest positive correlations between victory. This seems to suggest that people would prefer strong leaders. On the other hand, 'old' and 'generous', which may suggest a weak leader, have negative correlations. But traits like 'honest' and 'intelligent' also give negative correlations, which is very conterintuitive, and it may due to fact of having a relatively small sample size.
+\end{p4}
 
 % --------------------------------------------------------------
 %     You don't have to mess with anything below this line.
