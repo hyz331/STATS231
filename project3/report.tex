@@ -53,8 +53,14 @@ We used 491 500x500 jpg images that have scores for the 14 social attributes \{O
 
 \begin{p2}{}
 \item{}
-To be able to score social attributes on faces, we represent each image with a 1x119072 Histograms of Gradients (HoG) feature that indicates the images gradients at different regions. We also used a 160x1 vector to represent the positions of landmarks on a face. Below is a sample overlay of HoG and landmark features on a governor's face.
+To be able to score social attributes on faces, we represent each image with a 1x119072 Histograms of Gradients (HoG) feature that indicates the images gradients at different regions. We also used a 160x1 vector to represent the positions of landmarks on a face. Below is an illustration of the features that we extracted from a governor's face.
 \\
+\begin{center}
+		\includegraphics[height=4cm]{sample_feature_gov.jpg}
+		\includegraphics[height=4cm]{sample_feature_hog.jpg}
+		\includegraphics[height=4cm]{sample_feature_landmark.jpg}
+		figure 1 governor, HoG feature and facial landmarks
+\end{center}
 The features are normalized into one long vectors. But since it is reasonable to believe that one entry in facial landmark is more informative than one entry in the HoG feature, we also optimized the weight of facial landmarks against HoG features for a best cross-validation accuracy.
 \end{p2}
 
