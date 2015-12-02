@@ -1,0 +1,111 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+ 
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2}]}{\end{trivlist}}
+
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\usepackage{graphicx}
+\graphicspath{{./}}
+
+\begin{document}
+ 
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+ 
+\title{Homework 2}%replace X with the appropriate number
+\author{Yunzhong He\\ %replace with your name
+204010749} %if necessary, replace with your course title
+ 
+\maketitle
+ 
+\begin{problem}{Problem 1}
+\item{}
+Suppose $\forall i \in K$ we have $y_i \neq h_+(x_i)$, then
+\begin{align*}
+	err_{n+1}(h_+) &= \sum_{i}^m w_n(i)1(y_i \neq h_+(x_i)) = \sum_{i \in K} w_n(i) 
+     = \sum_{i \in K} w_{n-1}(i) exp(\frac{\alpha_n}{Z_n}) \\
+    &= \sum_{i \in K} w_{n-1}(i) (\frac{1-err_{n-1}}{err_{n-1}})^{1/2} \frac{1}{Z_{n-1}} \\
+    &= \sum_{i \in K} w_{n-1}(i) (\frac{1-err_{n-1}}{err_{n-1}})^{1/2} \frac{1}{2\sqrt{err_{n-1}(1-err_{n-1})}} 
+\end{align*}
+Since $\sum_{i \in K}w_{n-1}(i) = err_{n-1}$, we have
+\begin{align*}
+	err_{n+1}(h_+) = \frac{\sqrt{err_{n-1}(1-err_{n-1})}}{2\sqrt{err_{n-1}(1-err_{n-1})}} = \frac{1}{2}
+\end{align*}
+\end{problem}
+
+\begin{problem}{Problem 2}
+\item{2.1}
+To minimize Kullback-Leibler divergence between p and an uniform distribution we have 
+\begin{align*}
+	p^* &= argmax-KL(p(x)||unif(x)) = argmax-\int p(x) log \frac{p(x)}{p_{unif}} dx \\
+	&= argmax-\int_b^a(p(x) logp(x) - logp_{unif}) dx \\
+	&= argmax-\int_b^ap(x) logp(x) dx - (b-a)p_{unif} \\
+	&= argmax-\int_b^ap(x) logp(x) dx - C  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  (1)
+\end{align*}
+To maximize entropy of the distribution we have
+\begin{align*}
+	p^* &= argmax-\int_b^ap(x) logp(x) dx \ \ \ \ \ \ (2)
+\end{align*}
+Since (1) and (2) difference by only one constant, they share the same global optima $p^*$. So minimizing KL divergence between p(x) and a uniform distribution is equivalent to maximizing its entropy.
+\end{problem}
+
+\begin{problem}{Problem 3}
+\item{3.1}
+\begin{align*}
+	l(\Theta) &= log(\prod_i^N p(x_i, y_i|\theta)  = \sum_i^N log(p(x_i|y_i, \theta) p(y_i|\theta))\\
+	&= \sum_i^N logp(x_i|y_i,\theta) + \sum_i^N p(y_i|\theta)
+	 = \sum_i^N logp(x_i|y_i,\theta) + \sum_i^K n_i log\theta_i
+\end{align*}
+\item{3.2}
+Since $logp(x_i|y_i,\theta)$ is the likelihood funciton and does not depend on the prior $\theta$, to maximize $l(\theta)$ we only need to consider $\sum_i^K n_i \theta_i$. Use generalized Lagangian with the constraint $\sum_i^k\theta_i = 1$ we have 
+\begin{align}
+	&L(\Theta) = \sum_i^kn_ilog\theta_i + \lambda (\sum_i^k\theta_i - 1) \\
+	&\frac{\partial L}{\partial \theta_i} = n_i \frac{1}{\theta_i} + \lambda = 0\\
+	&\frac{\partial L}{\partial \lambda} = \sum_i^k\theta_i - 1 = 0
+\end{align}
+From (2) we have $\theta_i = \frac{n_i}{\lambda}$, plug into constraint we have $\sum_i^k n_i/\lambda = 1$. Thus $\lambda = \sum_i^kn_i = N$. So to obtain maximum likelihood we have
+\begin{align*}
+	\theta_i = \frac{n_i}{N}
+\end{align*}
+\end{problem}
+
+\begin{problem}{Problem 4}
+\item{4.1}
+\begin{align*}
+	L(\Theta) = \sum_i^Nlogp(x;\Theta) = \sum_i^Nlog\frac{1}{Z} - \sum_i^N\sum_j^K\lambda_j\phi_j(x_i) 
+\end{align*}
+\item{4.2}
+Taking $\frac{\partial l(\Theta)}{\theta_i} = 0$, we have
+\end{problem}
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+ 
+\end{document}
