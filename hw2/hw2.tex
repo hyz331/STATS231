@@ -49,13 +49,13 @@
 Suppose $\forall i \in K$ we have $y_i \neq h_+(x_i)$, then
 \begin{align*}
 	err_{n+1}(h_+) &= \sum_{i}^m w_n(i)1(y_i \neq h_+(x_i)) = \sum_{i \in K} w_n(i) 
-     = \sum_{i \in K} w_{n-1}(i) exp(\frac{\alpha_n}{Z_n}) \\
-    &= \sum_{i \in K} w_{n-1}(i) (\frac{1-err_{n-1}}{err_{n-1}})^{1/2} \frac{1}{Z_{n-1}} \\
-    &= \sum_{i \in K} w_{n-1}(i) (\frac{1-err_{n-1}}{err_{n-1}})^{1/2} \frac{1}{2\sqrt{err_{n-1}(1-err_{n-1})}} 
+     = \sum_{i \in K} w_{n-1}(i) \frac{exp(\alpha_n)}{Z_n} \\
+    &= \sum_{i \in K} w_{n-1}(i) (\frac{1-err_{h_+}}{err_{h_+}})^{1/2} \frac{1}{Z_{n}} \\
+    &= \sum_{i \in K} w_{n-1}(i) (\frac{1-err_{h_+}}{err_{h_+}})^{1/2} \frac{1}{2\sqrt{err_{h_+}(1-err_{h_+})}} 
 \end{align*}
 Since $\sum_{i \in K}w_{n-1}(i) = err_{n-1}$, we have
 \begin{align*}
-	err_{n+1}(h_+) = \frac{\sqrt{err_{n-1}(1-err_{n-1})}}{2\sqrt{err_{n-1}(1-err_{n-1})}} = \frac{1}{2}
+	err_{n+1}(h_+) = \frac{\sqrt{err_{h_+}(1-err_{h_+})}}{2\sqrt{err_{h_+}(1-err_{h_+})}} = \frac{1}{2}
 \end{align*}
 \end{problem}
 
