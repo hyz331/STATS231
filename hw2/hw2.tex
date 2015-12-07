@@ -72,7 +72,21 @@ To maximize entropy of the distribution we have
 \begin{align*}
 	p^* &= argmax-\int_b^ap(x) logp(x) dx \ \ \ \ \ \ (2)
 \end{align*}
-Since (1) and (2) difference by only one constant, they share the same global optima $p^*$. So minimizing KL divergence between p(x) and a uniform distribution is equivalent to maximizing its entropy.
+Since (1) and (2) difference by only one constant, they share the same global optima $p^*$. So minimizing KL divergence between p(x) and a uniform distribution is equivalent to maximizing its entropy.\\
+\item{2.2}
+Use Lagrangian multiplier, we have the following
+\begin{align*}
+	L(p) = -\int p(x)logp(x)dx + \lambda (\int p(x)dx - 1)
+\end{align*}
+Let $\frac{dL}{dp} = 0$, we have
+\begin{align*}
+	\frac{dL}{dp} = -logp(x) -1 + \lambda = 0
+\end{align*}
+Thus 
+\begin{align*}
+	p(x) = exp(-1+\lambda) = C
+\end{align*}
+So we can see entropy is maximized when p(x) is a uniform distribution. So intuitively, we can see that uniform distributions have largest entropy, and thus maxmizing the entropy of our model is trying to make our model as close to a uniform distribution as possible. Therefore it can be seen as minimizing KL divergence between our model and a uniform distribution.
 \end{problem}
 
 \begin{problem}{Problem 3}
