@@ -116,6 +116,14 @@ From (2) we have $\theta_i = \frac{n_i}{\lambda}$, plug into constraint we have 
 \end{align*}
 \item{4.2}
 Taking $\frac{\partial l(\Theta)}{\theta_i} = 0$, we have
+\begin{align*}
+	\frac{\partial l(\Theta)}{\theta_i} &= \frac{\partial -\sum_i^N \int \sum_j^K \theta_j\phi_j(x) p(x;\theta) dx - \sum_i^N\sum_j^K\theta_j\phi_j(x_i)}{\partial \theta_j}\\
+	&= N \int \phi_j(x) p(x;\theta) dx - \sum_i^N\phi_j(x_i) = 0
+\end{align*}
+So
+\begin{align*}
+	\int \phi_j(x) p(x;\theta) dx = \frac{1}{N} \sum_i^N\phi_j(x_i)
+\end{align*}
 \end{problem}
 
 % --------------------------------------------------------------
